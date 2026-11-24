@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+
+  /* Toy-store accent palette (from the approved design) */
+  --color-toy-purple: #7232dc;
+  --color-toy-purple-soft: #a855f7;
+  --color-toy-blue: #3b82f6;
+  --color-toy-green: #22c55e;
+  --color-toy-pink: #ec4899;
+  --color-toy-pink-soft: #f472b6;
+  --color-toy-yellow: #facc15;
+  --color-toy-orange: #f59e0b;
+  --color-toy-orange-deep: #fb923c;
+  --color-toy-navy: #0f172a;
+
+  --color-brand-50: #fff8eb;
+  --color-brand-100: #ffefc6;
+  --color-brand-200: #ffdd88;
+  --color-brand-300: #ffc94a;
+  --color-brand-400: #ffb21c;
+  --color-brand-500: #f59e0b;
+  --color-brand-600: #d97706;
+  --color-brand-700: #b45309;
+  --color-brand-800: #92400e;
+  --color-brand-900: #78350f;
+
+  --color-ink-50: #f8fafc;
+  --color-ink-100: #f1f5f9;
+  --color-ink-200: #e2e8f0;
+  --color-ink-300: #cbd5e1;
+  --color-ink-400: #94a3b8;
+  --color-ink-500: #64748b;
+  --color-ink-600: #475569;
+  --color-ink-700: #334155;
+  --color-ink-800: #1e293b;
+  --color-ink-900: #0f172a;
+
+  --font-sans: var(--font-poppins), sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-fredoka), var(--font-poppins), sans-serif;
+  --font-button: var(--font-poppins), var(--font-nunito), sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-poppins), sans-serif;
+}
+
+::selection {
+  background: #fde68a;
+  color: #78350f;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+/* Headings use the rounded display font; buttons use the clean UI font. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+button {
+  font-family: var(--font-button);
+}
+
+/* Card titles that are headings should use the body font (Poppins). */
+h1.font-sans,
+h2.font-sans,
+h3.font-sans,
+h4.font-sans,
+h5.font-sans,
+h6.font-sans {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* Hide scrollbars on horizontal carousels while keeping them swipeable. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Gentle floating animation for promo badges. */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+/* Hero slider progress: fills over the 4s a slide stays visible. */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-progress-bar {
+  transform-origin: left center;
+  animation: hero-progress 4s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float {
+    animation: none;
+  }
+
+  .hero-progress-bar {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
